@@ -1,22 +1,3 @@
-# 前提条件
-
-docker docker-composeが入っていること
-
-無い場合は以下コマンドでインストール
-```
-sudo apt install docker.io docker-compose
-```
-
-> dockerをsudoなしで動かしているのでエラーが出るかもしれません
-
-以下コマンドでsudo無しでdockerを動かす
-```
-sudo groupadd docker
-sudo gpasswd -a $USER docker
-sudo systemctl restart docker
-exit
-```
-
 # 初期設定でやっていること
 
 権限周りを解決するため以下コマンドで対処
@@ -29,7 +10,7 @@ export user=$(id -u):$(id -g)
 docker-compose up --build -d
 ```
 
-### docker-compose exec php でコンテナ内を操作
+### laravel設定
 
 PHPのパッケージ管理システムをインストールする
 ```
@@ -52,7 +33,7 @@ php artisan key:generate
 php artisan migrate
 ```
 
-##### 開発で使用したパッケージ
+# 開発で使用したパッケージ
 
 ```development.sh
 sudo apt install php-mbstring php-xml php-json
