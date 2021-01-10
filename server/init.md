@@ -7,6 +7,15 @@ docker docker-composeが入っていること
 sudo apt install docker.io docker-compose
 ```
 
+> dockerをsudoなしで動かしているのでエラーが出るかもしれません
+以下コマンドでsudo無しでdockerを動かす
+```
+sudo groupadd docker
+sudo gpasswd -a $USER docker
+sudo systemctl restart docker
+exit
+```
+
 # 初期設定でやっていること
 
 権限周りを解決するため以下コマンドで対処
