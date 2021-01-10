@@ -1,6 +1,6 @@
 ## 初期設定
 ```
-cd docker/
+cd serverdocker/
 
 bash init.sh
 ```
