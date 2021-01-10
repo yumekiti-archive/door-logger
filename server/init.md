@@ -41,3 +41,18 @@ php artisan key:generate
 ```
 php artisan migrate
 ```
+
+##### 開発で使用したパッケージ
+
+```development.sh
+sudo apt install php-mbstring php-xml php-json
+
+sudo apt install vsftpd
+```
+
+> vsftpdの設定
+
+```
+# /etc/vsftpd.conf以下変更
+write_enable=YES
+```
