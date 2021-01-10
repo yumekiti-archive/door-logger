@@ -8,6 +8,7 @@ sudo apt install docker.io docker-compose
 ```
 
 > dockerをsudoなしで動かしているのでエラーが出るかもしれません
+
 以下コマンドでsudo無しでdockerを動かす
 ```
 sudo groupadd docker
