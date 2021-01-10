@@ -1,3 +1,12 @@
+# 前提条件
+
+docker docker-composeが入っていること
+
+無い場合は以下コマンドでインストール
+```
+sudo apt install docker.io docker-compose
+```
+
 # 初期設定でやっていること
 
 権限周りを解決するため以下コマンドで対処
