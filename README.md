@@ -1,8 +1,6 @@
-# ranking-site
-
 ## 初期設定
 ```
-cd ranking-site/docker/
+cd docker/
 
 bash init.sh
 ```
