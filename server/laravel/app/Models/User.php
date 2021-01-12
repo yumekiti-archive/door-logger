@@ -47,4 +47,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Device::class);
     }
+
+    public function createDevice(string $deviceName)
+    {
+        $device = new Device(['device_name' => $deviceName]);
+        if($this->save($device)){
+            return $device;
+        }
+        return null;
+        
+    }
 }
