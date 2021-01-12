@@ -50,11 +50,6 @@ class User extends Authenticatable
 
     public function createDevice(string $deviceName)
     {
-        $device = new Device(['device_name' => $deviceName]);
-        if($this->save($device)){
-            return $device;
-        }
-        return null;
-        
+        return $this->devices()->create(['device_name' => $deviceName]);
     }
 }
