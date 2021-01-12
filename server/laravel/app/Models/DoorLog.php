@@ -10,6 +10,8 @@ class DoorLog extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['is_open'];
+
     public function device()
     {
         return $this->belongsTo(Device::class);

@@ -20,4 +20,17 @@ class Device extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function openDoor()
+    {
+        $log = new DoorLog(['is_open' => true]);
+        $this->logs()->save($log);
+    }
+
+    public function closeDoor()
+    {
+        $log = new DoorLog(['is_open' => false]);
+        $this->logs()->save($log);
+    }
+
 }
