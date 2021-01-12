@@ -16,6 +16,8 @@ class CreateDoorLogsTable extends Migration
         Schema::create('door_logs', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->boolean('is_open');
+            $table->foreignId('device_id')->constrained('devices');
         });
     }
 

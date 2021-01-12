@@ -16,6 +16,10 @@ class CreateDevicesTable extends Migration
         Schema::create('devices', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('token', 100)->unique();
+            $table->string('device_name', 30)->nullable()->default(null);
+            $table->foreignId('user_id')->constrained('users');
+            $table->index('user_id');
         });
     }
 
