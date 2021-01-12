@@ -1,20 +1,17 @@
 # 前提条件
 
-docker docker-composeが入っていること
+docker docker-compose composerが入っていること
 
 無い場合は以下コマンドでインストール
 ```
-sudo apt install docker.io docker-compose
+sudo apt-get -y install docker.io docker-compose
 ```
 
-> dockerをsudoなしで動かしているのでエラーが出るかもしれません
+php artisan コマンドが使えること
 
-以下コマンドでsudo無しでdockerを動かす
+無い場合は以下コマンドでインストール
 ```
-sudo groupadd docker
-sudo gpasswd -a $USER docker
-sudo systemctl restart docker
-exit
+sudo apt-get -y install php-mbstring php-xml php-json composer
 ```
 
 # 初期設定

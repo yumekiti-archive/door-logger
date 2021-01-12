@@ -35,9 +35,7 @@ php artisan migrate
 
 # 開発で使用したパッケージ
 
-```development.sh
-sudo apt install php-mbstring php-xml php-json
-
+```
 sudo apt install vsftpd
 ```
 
@@ -46,4 +44,12 @@ sudo apt install vsftpd
 ```
 # /etc/vsftpd.conf以下変更
 write_enable=YES
+```
+
+# 消したい場合
+
+`door-logger/docker`に移動し以下コマンドで削除
+
+```
+bash delete.sh
 ```
