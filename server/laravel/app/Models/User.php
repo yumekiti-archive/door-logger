@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Device;
 
 class User extends Authenticatable
 {
@@ -40,4 +41,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function devices()
+    {
+        return $this->hasMany(Device::class);
+    }
+
+    public function createDevice(string $deviceName)
+    {
+        return $this->devices()->create(['device_name' => $deviceName]);
+    }
 }
