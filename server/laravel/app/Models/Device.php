@@ -12,6 +12,8 @@ class Device extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['user_id','device_name'];
+
     public function logs()
     {
         return $this->hasMany(DoorLog::class);
@@ -30,13 +32,20 @@ class Device extends Model
     public function openDoor()
     {
         $log = new DoorLog(['is_open' => true]);
-        $this->logs()->save($log);
+        if($this->logs()->save($log)){
+            return $log;
+        }
+        return null;
     }
 
     public function closeDoor()
     {
         $log = new DoorLog(['is_open' => false]);
-        $this->logs()->save($log);
+        if($this->logs()->save($log)){
+            return $log;
+
+        }
+        return null;
     }
 
     /**
@@ -44,7 +53,7 @@ class Device extends Model
      */
     public function generateToken()
     {
-        $this->token = hash('sha-256', Str::random(10));
+        $this->token = hash('sha256', Str::random(10));
         return $this->save();
     }
 

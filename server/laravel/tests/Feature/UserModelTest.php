@@ -5,18 +5,25 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\User;
+use PHPUnit\Framework\Assert;
 
 class UserModelTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-    public function test_example()
-    {
-        $response = $this->get('/');
+    use RefreshDatabase;
 
-        $response->assertStatus(200);
+    public function testユーザーを作成することができるか()
+    {
+        $user = User::factory()->create();
+        Assert::assertNotNull($user);
+
+    }
+
+    public function testデバイスを作成することができるか()
+    {
+        $user = User::factory()->create();
+        $device = $user->createDevice('ほげーー');
+        Assert::assertNotNull($device);
+    
     }
 }
