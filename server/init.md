@@ -1,12 +1,3 @@
-# 前提条件
-
-docker docker-composeが入っていること
-
-無い場合は以下コマンドでインストール
-```
-sudo apt install docker.io docker-compose
-```
-
 # 初期設定でやっていること
 
 権限周りを解決するため以下コマンドで対処
@@ -19,7 +10,7 @@ export user=$(id -u):$(id -g)
 docker-compose up --build -d
 ```
 
-### docker-compose exec php でコンテナ内を操作
+### laravel設定
 
 PHPのパッケージ管理システムをインストールする
 ```
@@ -40,4 +31,25 @@ php artisan key:generate
 
 ```
 php artisan migrate
+```
+
+# 開発で使用したパッケージ
+
+```
+sudo apt install vsftpd
+```
+
+> vsftpdの設定
+
+```
+# /etc/vsftpd.conf以下変更
+write_enable=YES
+```
+
+# 消したい場合
+
+`door-logger/docker`に移動し以下コマンドで削除
+
+```
+bash delete.sh
 ```
