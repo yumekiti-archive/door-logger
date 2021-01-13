@@ -5,7 +5,8 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
-use App\Model\Device;
+use App\Models\Device;
+use App\Models\User;
 use PHPUnit\Framework\Assert;
 
 class DoorAPITest extends TestCase
@@ -21,7 +22,7 @@ class DoorAPITest extends TestCase
 
         // テスト用のデバイスを作成します。
         $this->device = Device::factory()->create(['user_id' => User::factory()->create()->id]);
-        $this->device->generateToekn();
+        $this->device->generateToken();
  
         Device::factory()->count(20)->create(['user_id' => User::factory()->create()->id]);
     }
