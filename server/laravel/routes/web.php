@@ -16,6 +16,6 @@ use App\Http\Controllers\LoggerController;
 
 Route::get('/welcome', function () {
     return view('welcome');
-});
+})->name('login');
 
 Route::get('/', [LoggerController::class, 'index']);

@@ -14,14 +14,11 @@ class Device extends Model
 
     protected $fillable = ['user_id','device_name'];
 
+    protected $appends = ['latest_log'];
+
     public function logs()
     {
         return $this->hasMany(DoorLog::class);
-    }
-
-    public function latestLog()
-    {
-        return $this->logs()->whereRaw('logs.device_id = (select max(id) from logs where logs.device_id = devices.id)');
     }
 
     public function user()
@@ -31,21 +28,15 @@ class Device extends Model
 
     public function openDoor()
     {
-        $log = new DoorLog(['is_open' => true]);
-        if($this->logs()->save($log)){
-            return $log;
-        }
-        return null;
+        return $this->logs()->create(['is_open' => true]);
+
+        
     }
 
     public function closeDoor()
     {
-        $log = new DoorLog(['is_open' => false]);
-        if($this->logs()->save($log)){
-            return $log;
-
-        }
-        return null;
+        return $this->logs()->create(['is_open' => false]);
+        
     }
 
     /**
@@ -55,6 +46,13 @@ class Device extends Model
     {
         $this->token = hash('sha256', Str::random(10));
         return $this->save();
+    }
+
+    public function getLatestLogAttribute()
+    {
+        
+        return $this->logs()->orderBy('id','desc')->first();
+
     }
 
 }
