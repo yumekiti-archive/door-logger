@@ -45,4 +45,17 @@ class DeviceModelTest extends TestCase
         Assert::assertTrue($device->generateToken());
         Assert::assertNotNull($device->token);
     }
+
+    public function testLatestLogは取得できるか()
+    {
+        $device = Device::factory()->create(['user_id' => User::factory()->create()->id]);
+        for($i = 0; $i < 10; $i++){
+            if($i % 2){
+                $device->openDoor();
+            }else{
+                $device->closeDoor();
+            }
+        }
+        $this->assertNotNull($device->latest_log);
+    }
 }

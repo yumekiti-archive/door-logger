@@ -14,6 +14,6 @@ class DeviceAPIController extends Controller
 
     public function show(Request $request)
     {
-        return $request->device->load('latestLog');
+        return $request->device;
     }
 }

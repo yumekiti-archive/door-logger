@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\DoorRequest;
+use App\Models\Device;
 
 class DoorAPIController extends Controller
 {
@@ -14,13 +15,14 @@ class DoorAPIController extends Controller
 
     public function door(DoorRequest $request)
     {
+        $device = Device::where('token', $request->bearerToken())->first();
         if($request->input('is_open')){
-            $request->device->openDoor();
+            $device->openDoor();
         }else{
-            $request->device->closeDoor();
+            $device->closeDoor();
         }
 
-        return $device->load('latestLog');
+        return $device;
     }
 }
 

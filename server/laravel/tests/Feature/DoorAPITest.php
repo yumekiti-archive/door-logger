@@ -41,25 +41,26 @@ class DoorAPITest extends TestCase
     public function test不正なTokenを弾くことができているかテストする()
     {
         $illegalToken = 'hogehoge';
-        $res = $this->get('/api/device', ['Authorization' => 'Bearer ' . $illegalToken]);
+        $res = $this->get('/api/device', ['Authorization' => 'Bearer ' . $illegalToken, 'Accept' => 'application/json']);
         $res->assertStatus(401);
     }
 
     public function testOpenDoor()
     {
         $token = $this->device->token;
-        $res = $this->post('/api/device/door', ['is_open' => true]);
+        $res = $this->post('/api/device/door', ['is_open' => true], ['Authorization' => 'Bearer ' . $token]);
         $res->assertStatus(200);
-        $log = $this->device->latestLog()->first();
-        Assert::assertTrue($log->is_open);
+        $log = $this->device->logs()->orderBy('id', 'desc')->first();
+        Assert::assertEquals(true, $log->is_open);
     }
 
     public function testCloseDoor()
     {
         $token = $this->device->token;
-        $res = $this->post('/api/device/door', ['is_open' => true]);
+        $res = $this->post('/api/device/door', ['is_open' => false], ['Authorization' => 'Bearer ' . $token]);
         $res->assertStatus(200);
-        $log = $this->device->latestLog()->first();
-        Assert::assertFalse($log->is_open);
+        $log = $this->device->logs()->orderBy('id', 'desc')->first();
+        Assert::assertNotNull($log);
+        Assert::assertEquals(false, $log->is_open);
     }
 }

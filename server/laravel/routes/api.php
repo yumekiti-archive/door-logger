@@ -22,4 +22,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::get('/device', [DeviceAPIController::class, 'show']);
-Route::post('/device/door', [DeviceAPIController::class, 'door']);
+Route::post('/device/door', [DoorAPIController::class, 'door']);
