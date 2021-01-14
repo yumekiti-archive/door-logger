@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoggerController;
+use App\Models\User;
+use App\Models\Device;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |:---------------------------------------------------------------------------|
@@ -19,3 +22,7 @@ Route::get('/welcome', function () {
 })->name('login');
 
 Route::get('/', [LoggerController::class, 'index']);
+
+Route::get('/devices/{deviceId}/token', function($deviceId){
+    return Auth::user()->devices()->findOrFail($deviceId);
+})->middleware('auth');
