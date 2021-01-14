@@ -5,7 +5,7 @@ import RPi.GPIO as GPIO
 # 以下後に変更
 
 # URLの設定
-url = "http://hoge.php"
+url = "http://127.0.0.1:5000/post"
 
 # トークンの設定
 token = "hoge"
@@ -21,25 +21,29 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(18,GPIO.IN,pull_up_down=GPIO.PUD_UP)
 
 # ドアセンサーのon off設定
-door_sw = 0
+door_sw = False
 
 # postループ対策
-sw_lock = 0
+sw_lock = False
 
 while True:
     try:
         # センサーの読み込み
         door_sw = GPIO.input(18)
 
+        print(door_sw + " : ")
+        time.sleep(0.03)
+
         #ドアセンサーとpostループ対策が等しくない時
-        if door_sw == sw_lock: continue
+        if door_sw == sw_lock:
+            continue
 
-            # postループ対策
-            sw_lock = door_sw
+        # postループ対策
+        sw_lock = door_sw
 
-            # センサーの値が変化した時その状態をサーバーへPOSTする
-            params = { "data": { "is_open": door_sw == 0 }
-            res = requests.post(url, params)
+        # センサーの値が変化した時その状態をサーバーへPOSTする
+        params = { "data": { "is_open": door_sw == False } }
+        res = requests.post(url, params)
 
     except:
         break
