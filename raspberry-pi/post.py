@@ -32,7 +32,7 @@ while True:
         door_sw = GPIO.input(18)
 
         print(door_sw + " : ")
-        time.sleep(0.05)
+        time.sleep(0.03)
 
         #ドアセンサーとpostループ対策が等しくない時
         if door_sw == sw_lock:
