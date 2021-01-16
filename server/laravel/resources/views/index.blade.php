@@ -10,11 +10,12 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <a href="{{ route('index') }}">
                     <div class="p-6 bg-white border-b border-gray-200">
-                        asd
+                        hoge
                     </div>
                 </a>
             </div>
-            {{ $devices }}
+            <p>{{ $devices }}</p>
+            <p>{{ $user }}</p>
         </div>
     </div>
 </x-app-layout>
