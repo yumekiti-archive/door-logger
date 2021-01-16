@@ -14,7 +14,7 @@ class LoggerController extends Controller
     public function index()
     {
         $devices = Device::all();
-        $user = User::all();
+        $user = Auth::user();
 
         return view("index", ['user' => $user, 'devices' => $devices]);
     }
@@ -24,12 +24,17 @@ class LoggerController extends Controller
         return view("deviceAdd");
     }
 
-    public function deviceAdd(DoorRequest $req)
+    public function deviceAdd(Request $req)
     {
-        $device = User::createDevice([
-            'device_name' => $req->input('device_name'),
-        ]);
 
-        return $device;
+        $user = Auth::user();
+
+        $device = $user->createDevice(
+            $req->input('device_name')
+        );
+
+        $device->generateToken();
+
+        return redirect('/');
     }
 }

@@ -5,17 +5,27 @@
         </h2>
     </x-slot>
 
+    <div class="flex float-right mr-20">
+        <div class="text-center text-white rounded-full hover:bg-blue-500 bg-blue-600 p-2">
+            <a href="{{ route('addDevices') }}">デバイス追加</a>
+        </div>
+    </div>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <a href="{{ route('index') }}">
-                    <div class="p-6 bg-white border-b border-gray-200">
-                        hoge
-                    </div>
-                </a>
+                @foreach ($devices as $device)
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <ul>
+                        <li>
+                            デバイス名：{{ $device->device_name }}
+                        </li>
+                        <li>
+                            トークン：{{ $device->token }}
+                        </li>
+                    </ul>
+                </div>
+                @endforeach
             </div>
-            <p>{{ $devices }}</p>
-            <p>{{ $user }}</p>
         </div>
     </div>
 </x-app-layout>

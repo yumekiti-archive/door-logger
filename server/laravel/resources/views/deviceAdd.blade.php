@@ -7,7 +7,7 @@
     <body>
         <form method="post">
             @csrf
-                <input type="text" name="devices" />
+                <input type="text" name="device_name" />
                 <input type="submit" />
         </form>
     </body>

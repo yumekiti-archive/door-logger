@@ -24,7 +24,6 @@ class DoorRequest extends FormRequest
     public function rules()
     {
         return [
-            'device_name' => ['required', 'max:30'],
             'is_open' => 'required|boolean'
         ];
     }
