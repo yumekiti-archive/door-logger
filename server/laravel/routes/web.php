@@ -20,4 +20,6 @@ Route::get('/dashboard',function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/devicesAdd', [LoggerController::class, 'devicesAdd'])->middleware(['auth'])->name('addDevices');
+
 require __DIR__.'/auth.php';

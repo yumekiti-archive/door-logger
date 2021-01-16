@@ -14,6 +14,7 @@
                     </div>
                 </a>
             </div>
+            {{ $devices }}
         </div>
     </div>
 </x-app-layout>
