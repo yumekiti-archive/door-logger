@@ -26,9 +26,11 @@
                 </div>
                 @endforeach
             </div>
+            @foreach ($devices as $device)
+            <br><p>{{ $device }}</p>
+            @endforeach
+            <br><p>{{ $user }}</p>
+            <br><p>{{ $door }}</p>
         </div>
-        <p>{{ $device }}</p>
-        <p>{{ $user }}</p>
-        <p>{{ $door }}</p>
     </div>
 </x-app-layout>
