@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\DoorRequest;
 use App\Models\User;
 use App\Models\Device;
+use App\Models\DoorLog;
 
 class LoggerController extends Controller
 {
@@ -15,8 +16,9 @@ class LoggerController extends Controller
     {
         $devices = Device::all();
         $user = Auth::user();
+        $door = DoorLog::all();
 
-        return view("index", ['user' => $user, 'devices' => $devices]);
+        return view("index", ['user' => $user, 'devices' => $devices, 'door' => $door]);
     }
 
     public function devices()

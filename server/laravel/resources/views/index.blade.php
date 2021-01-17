@@ -27,5 +27,8 @@
                 @endforeach
             </div>
         </div>
+        <p>{{ $device }}</p>
+        <p>{{ $user }}</p>
+        <p>{{ $door }}</p>
     </div>
 </x-app-layout>
