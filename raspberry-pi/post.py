@@ -1,15 +1,15 @@
 import requests
-import time
 import RPi.GPIO as GPIO
 import json
+import time
 
 # 以下後に変更
 
 # トークン設定
-token = "（ここを消してトークンを入力）"
+token = "e23da7f422631835387e2e47f883cee9b6fc69ea603c8e692ea22d0d0905d2f6"
 
 # 以下URLが等しくない時変更 URL設定
-url = "http://localhost:8010/api/device/door"
+url = "http://192.168.11.31:8010/api/device/door"
 
 # 変更内容ここまで
 
@@ -33,32 +33,27 @@ while True:
         # センサーの読み込み
         door_sw = GPIO.input(18)
 
-        # postループ対策
-        if door_sw == False and sw_lock == True:
-
-            sw_lock = False
-
-        if door_sw == True and sw_lock == False:
-
-            # postループ対策
-            sw_lock = True
+        if door_sw != sw_lock:
 
             # on off 確認
             print(door_sw)
-
-            # postループ対策
-            sw_lock = door_sw
 
             # パラメーター設定
             params = { "is_open": door_sw }
 
             # paramsをjsonに変更
-            json = json.dumps(params)
+            door_json = json.dumps(params)
 
             # サーバーへPOST
-            res = requests.post(url, json, headers=headers)
+            res = requests.post(url, door_json, headers=headers)
+
+        sw_lock = door_sw
+
+        time.sleep(0.50)
 
     except:
+        import traceback
+        traceback.print_exc()
         break
 
 # GPIO操作終了
@@ -66,3 +61,4 @@ GPIO.cleanup()
 
 # 終わり確認
 print("end")
+
