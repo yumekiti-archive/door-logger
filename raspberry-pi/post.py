@@ -5,13 +5,13 @@ import json
 
 # 以下後に変更
 
-# トークンの設定
-token = "hoge"
+# トークン設定
+token = "（ここを消してトークンを入力）"
+
+# 以下URLが等しくない時変更 URL設定
+url = "http://localhost:8010/api/device/door"
 
 # 変更内容ここまで
-
-# URLの設定
-url = "http://localhost:8010/api/device/door"
 
 # ヘッダーの設定
 headers = {"Authorization" : "Bearer "+ token, "Accept" : "application/json", 'Content-Type': 'application/json'}
@@ -24,32 +24,34 @@ GPIO.setup(18,GPIO.IN,pull_up_down=GPIO.PUD_UP)
 # ドアセンサーのon off設定
 door_sw = False
 
-# postループ対策
-sw_lock = False
-
 while True:
     try:
         # センサーの読み込み
         door_sw = GPIO.input(18)
 
-        #ドアセンサーとpostループ対策が等しくない時
-        if door_sw == sw_lock:
-            continue
-
-        # on off 確認
-        print(door_sw)
+        # postループ対策
+        sw_lock = False
 
         # postループ対策
-        sw_lock = door_sw
+        if door_sw != sw_lock:
 
-        # パラメーター設定
-        params = { "is_open": door_sw }
+            # postループ対策
+            sw_lock = True
 
-        # paramsをjsonに変更
-        json = json.dumps(params)
+            # on off 確認
+            print(door_sw)
 
-        # サーバーへPOST
-        res = requests.post(url, json, headers=headers)
+            # postループ対策
+            sw_lock = door_sw
+
+            # パラメーター設定
+            params = { "is_open": door_sw }
+
+            # paramsをjsonに変更
+            json = json.dumps(params)
+
+            # サーバーへPOST
+            res = requests.post(url, json, headers=headers)
 
     except:
         break
