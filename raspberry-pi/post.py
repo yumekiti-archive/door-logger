@@ -24,16 +24,21 @@ GPIO.setup(18,GPIO.IN,pull_up_down=GPIO.PUD_UP)
 # ドアセンサーのon off設定
 door_sw = False
 
+# postループ対策
+sw_lock = False
+
 while True:
     try:
+
         # センサーの読み込み
         door_sw = GPIO.input(18)
 
         # postループ対策
-        sw_lock = False
+        if door_sw == False and sw_lock == True:
 
-        # postループ対策
-        if door_sw != sw_lock:
+            sw_lock = False
+
+        if door_sw == True and sw_lock == False:
 
             # postループ対策
             sw_lock = True
