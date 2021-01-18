@@ -12,6 +12,10 @@ class DoorLog extends Model
 
     protected $fillable = ['is_open'];
 
+    protected $casts = [
+        'is_open' => 'boolean'
+    ];
+
     public function device()
     {
         return $this->belongsTo(Device::class);
