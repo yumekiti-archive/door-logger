@@ -1,12 +1,13 @@
 import requests
+import json
 
 # 以下後に変更
 
 # URLの設定
-url = "http://192.168.11.31:8010/api/device/door"
+url = "http://localhost:8010/api/device/door"
 
 # トークンの設定
-token = "9ea37e2201d3ccb51af802e915cb59e4b4f1c21db49d0a14e2a02938c190fd5e"
+token = "7dfb8b3cd7f4631a7749b1cb236fd088e3bd1b7d0e4390e21700f08d1cf5821a"
 
 # 変更：ここまで
 
@@ -14,11 +15,14 @@ token = "9ea37e2201d3ccb51af802e915cb59e4b4f1c21db49d0a14e2a02938c190fd5e"
 door_sw = True
 
 # ヘッダーの設定
-headers = {"Authorization" : "Bearer "+ token}
+headers = {"Authorization" : "Bearer "+ token, "Accept" : "application/json", 'Content-Type': 'application/json'}
 
 # サーバーへPOSTする
-params = { "data": { "is_open": door_sw == False } }
-res = requests.post(url, params)
+params = { "is_open": True }
+json = json.dumps(params)
 
+res = requests.post(url, json, headers=headers)
+print(res)
+print(res.json())
 # 終わり
 print("end")
