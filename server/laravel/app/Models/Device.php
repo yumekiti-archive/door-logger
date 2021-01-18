@@ -30,13 +30,13 @@ class Device extends Model
     {
         return $this->logs()->create(['is_open' => true]);
 
-        
+
     }
 
     public function closeDoor()
     {
         return $this->logs()->create(['is_open' => false]);
-        
+
     }
 
     /**
@@ -50,7 +50,7 @@ class Device extends Model
 
     public function getLatestLogAttribute()
     {
-        
+
         return $this->logs()->orderBy('id','desc')->first();
 
     }

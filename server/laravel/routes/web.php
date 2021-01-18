@@ -14,8 +14,14 @@ use App\Http\Controllers\LoggerController;
 |                                                                            |
 */
 
-Route::get('/welcome', function () {
-    return view('welcome');
-})->name('login');
+Route::get('/', [LoggerController::class, 'index'])->middleware(['auth'])->name('index');
 
-Route::get('/', [LoggerController::class, 'index']);
+Route::get('/dashboard',function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+Route::get('/devicesAdd', [LoggerController::class, 'devices'])->middleware(['auth'])->name('addDevices');
+
+Route::post('/devicesAdd', [LoggerController::class, 'deviceAdd']);
+
+require __DIR__.'/auth.php';

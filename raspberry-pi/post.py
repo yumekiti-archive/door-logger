@@ -5,15 +5,15 @@ import RPi.GPIO as GPIO
 # 以下後に変更
 
 # URLの設定
-url = "hoge"
+url = "http://localhost:8100/api/device/door"
 
 # トークンの設定
 token = "hoge"
 
-# ここまで
+# 変更：ここまで
 
 # ヘッダーの設定
-headers = {"Authorization" : "Bearer "+ token}
+headers = {"Authorization" : "Bearer " + token}
 
 # モードの指定をする(今回は役割ピン番号)
 GPIO.setmode(GPIO.BCM)
