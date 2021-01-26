@@ -14,13 +14,13 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 @foreach ($devices as $device)
-                <div class="p-6 bg-white border-b border-gray-200">
+                <div class="p-6 bg-white border-b border-gray-200" id="device-id-{{ $device->id }}">
                     <a href="{{ route('doorlog',['deviceId' => $device->id] )}}">
                     <ul>
                         <li>
                             デバイス名：{{ $device->device_name }}
                         </li>
-                        <li>
+                        <li class="door-state">
                             @if(isset($device->latest_log->is_open) && $device->latest_log->is_open)
                                 OPEN
                             @else

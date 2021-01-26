@@ -22,7 +22,7 @@ window.io = require("socket.io-client");
 
 window.Echo = new Echo({
     broadcaster: 'socket.io',
-    host: window.location.hostname +":"+ window.location.port + '/socket.io',
+    host: window.location.host,
     encrypted: true,
 });
 

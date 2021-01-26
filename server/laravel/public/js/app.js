@@ -3902,7 +3902,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.io = __webpack_require__(/*! socket.io-client */ "./node_modules/socket.io-client/lib/index.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__.default({
   broadcaster: 'socket.io',
-  host: window.location.hostname + ":" + window.location.port + '/socket.io',
+  host: window.location.host,
   encrypted: true
 });
 window.Echo.channel('doors.event').listen('DoorEvent', function (e) {
