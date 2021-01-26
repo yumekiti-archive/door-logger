@@ -38,7 +38,7 @@ services:
     container_name: door-logger-redis
     image: redis:6.0.9
     ports:
-      - "6379:6379"
+      - 6379:6379
 
   # Echo Server
   laravel-echo-server:

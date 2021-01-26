@@ -11,7 +11,7 @@
 			"host": "door-logger-redis"
 		},
 		"sqlite": {
-			"databasePath": "/database/laravel-echo-server.sqlite"
+			"databasePath": "../../laravel/database/laravel-echo-server.sqlite"
 		}
 	},
 	"devMode": true,
