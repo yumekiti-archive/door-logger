@@ -15,6 +15,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 @foreach ($devices as $device)
                 <div class="p-6 bg-white border-b border-gray-200">
+                    <a href="{{ route('doorlog',['deviceId' => $device->id] )}}">
                     <ul>
                         <li>
                             デバイス名：{{ $device->device_name }}
@@ -22,7 +23,15 @@
                         <li>
                             トークン：{{ $device->token }}
                         </li>
+                        <li>
+                            状態：<?php if (isset($device->latest_log->is_open)) {
+                                echo "OPEN";
+                            }else{
+                                echo "CLOSE";
+                            } ?>
+                        </li>
                     </ul>
+                    </a>
                 </div>
                 @endforeach
             </div>

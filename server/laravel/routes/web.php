@@ -24,4 +24,6 @@ Route::get('/devicesAdd', [LoggerController::class, 'devices'])->middleware(['au
 
 Route::post('/devicesAdd', [LoggerController::class, 'deviceAdd']);
 
+Route::get('/doorlog/{deviceId}', [LoggerController::class, 'doorlog'])->middleware(['auth'])->name('doorlog');
+
 require __DIR__.'/auth.php';
