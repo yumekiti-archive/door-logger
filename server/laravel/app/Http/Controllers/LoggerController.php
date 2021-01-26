@@ -46,7 +46,7 @@ class LoggerController extends Controller
 
         $device = $user->devices()->findOrFail($deviceId);
 
-        return view("doorlog", ['device' => $device]);
+        return view("doorlog", ['devices' => $device]);
     }
 
 }

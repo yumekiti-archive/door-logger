@@ -21,14 +21,11 @@
                             デバイス名：{{ $device->device_name }}
                         </li>
                         <li>
-                            トークン：{{ $device->token }}
-                        </li>
-                        <li>
-                            状態：<?php if (isset($device->latest_log->is_open)) {
-                                echo "OPEN";
-                            }else{
-                                echo "CLOSE";
-                            } ?>
+                            @if(isset($device->latest_log->is_open) && $device->latest_log->is_open)
+                                OPEN
+                            @else
+                                CLOSE
+                            @endif
                         </li>
                     </ul>
                     </a>

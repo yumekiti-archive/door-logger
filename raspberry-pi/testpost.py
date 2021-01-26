@@ -7,7 +7,7 @@ import json
 url = "http://localhost:8010/api/device/door"
 
 # トークンの設定
-token = "7dfb8b3cd7f4631a7749b1cb236fd088e3bd1b7d0e4390e21700f08d1cf5821a"
+token = "f1ca24f51687e398702bf9123229895d56477e35ceadbe8395d410cf810ed7c5"
 
 # 変更：ここまで
 

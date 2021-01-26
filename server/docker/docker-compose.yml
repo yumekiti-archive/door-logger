@@ -33,3 +33,19 @@ services:
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     ports:
     - 3600:3306
+
+  redis:
+    container_name: door-logger-redis
+    image: redis:6.0.9
+    ports:
+      - "6379:6379"
+
+  # Echo Server
+  laravel-echo-server:
+    container_name: door-logger-laravel-echo
+    build: ./laravel-echo
+    ports:
+      - 6001:6001
+    volumes:
+      - ./laravel-echo/:/work:cached
+    working_dir: /work
