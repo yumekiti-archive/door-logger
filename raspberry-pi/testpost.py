@@ -7,18 +7,18 @@ import json
 url = "http://localhost:8010/api/device/door"
 
 # トークンの設定
-token = "f1ca24f51687e398702bf9123229895d56477e35ceadbe8395d410cf810ed7c5"
+token = "4c716d4cf211c7b7d2f3233c941771ad0507ea5bacf93b492766aa41ae9f720d"
 
 # 変更：ここまで
 
 # ドアセンサーのon off設定
-door_sw = True
+door_sw = False
 
 # ヘッダーの設定
 headers = {"Authorization" : "Bearer "+ token, "Accept" : "application/json", 'Content-Type': 'application/json'}
 
 # サーバーへPOSTする
-params = { "is_open": True }
+params = { "is_open": door_sw }
 json = json.dumps(params)
 
 res = requests.post(url, json, headers=headers)

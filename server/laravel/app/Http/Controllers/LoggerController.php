@@ -44,9 +44,9 @@ class LoggerController extends Controller
     {
         $user = Auth::user();
 
-        $device = $user->devices()->findOrFail($deviceId);
+        $devices = $user->devices()->findOrFail($deviceId);
 
-        return view("doorlog", ['devices' => $device]);
+        return view("doorlog", ['devices' => $devices]);
     }
 
 }

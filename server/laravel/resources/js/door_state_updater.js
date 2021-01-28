@@ -10,7 +10,7 @@ const updateState = (e) => {
     let elements = deviceElement.getElementsByClassName("door-state");
     if(elements.length){
         let element = elements[0];
-        element.innerText = doorLog.is_open ? "OPEN" : "CLOSE";
+        element.innerText = doorLog.is_open ? "状態：OPEN" : "状態：CLOSE";
     }
 }
 echo.channel("doors.event")
