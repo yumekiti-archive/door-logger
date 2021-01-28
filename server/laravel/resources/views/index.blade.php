@@ -17,10 +17,10 @@
                 <div class="ml-20 p-6 bg-white border-b border-gray-200" id="device-id-{{ $device->id }}">
                     <a href="{{ route('doorlog',['deviceId' => $device->id] )}}">
                     <ul>
-                        <li>
+                        <li class="p-1">
                             デバイス名：{{ $device->device_name }}
                         </li>
-                        <li class="door-state">
+                        <li class="p-1 door-state">
                             状態：
                             @if(isset($device->latest_log->is_open) && $device->latest_log->is_open)
                                 OPEN
@@ -33,11 +33,11 @@
                 </div>
                 @endforeach
             </div>
-            @foreach ($devices as $device)
+            <!--@foreach ($devices as $device)
             <br><p>{{ $device }}</p>
             @endforeach
             <br><p>{{ $user }}</p>
-            <br><p>{{ $door }}</p>
+            <br><p>{{ $door }}</p>-->
         </div>
     </div>
 </x-app-layout>
