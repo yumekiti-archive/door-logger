@@ -39,4 +39,14 @@ class LoggerController extends Controller
 
         return redirect('/');
     }
+
+    public function doorlog($deviceId)
+    {
+        $user = Auth::user();
+
+        $devices = $user->devices()->with('logs')->findOrFail($deviceId);
+
+        return view("doorlog", ['devices' => $devices]);
+    }
+
 }
