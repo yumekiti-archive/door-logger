@@ -59,11 +59,14 @@ git clone https://github.com/yumekiti/door-logger.git
 bash pac.sh
 ```
 
-- raspberry piの12ピンとgrandに刺しておく
+- raspberry piの18ピンとgrandに刺しておく
 
 - `door-logger/raspberry-pi/`内で以下コマンド
 ```
 python3 post.py
+
+トークンを入力
+ホストipとポート入力
 ```
 
 # 消したい場合
