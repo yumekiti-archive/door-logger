@@ -1,22 +1,74 @@
-# 前提条件
+# 自部屋警備員
 
-docker docker-compose composerが入っていること
+# 起動方法
 
-無い場合は以下コマンドでインストール
+## 前提条件
+- 8010ポートが使われていないこと
+
+## ovaの場合
+`パスワード：asd`
+
+パスワードを数回入力すると立ち上がります
+
+## gitからの場合
+
+githubからダウンロードしてくる
 ```
-sudo apt-get -y install docker.io docker-compose
+git clone https://github.com/yumekiti/door-logger.git
 ```
 
-php artisan コマンドが使えること
+以下からは`door-logger/server/docker/`で作業している
 
-無い場合は以下コマンドでインストール
+- パッケージを入れる
 ```
-sudo apt-get -y install php-mbstring php-xml php-json composer
+bash pac.sh
 ```
 
-# 初期設定
+- sudo無しdocker
 ```
-cd server/docker/
+bash docker.sh
+```
 
-bash init.sh
+- 起動させる
+```
+bash run.sh
+```
+
+- 仮のデータを入れる
+```
+bash seed.sh
+```
+
+- nodeのバージョンが合っていない場合
+```
+bash nvm.sh
+```
+```
+bash nodeupdate.sh
+```
+
+## raspberry piへの設定
+
+- githubからダウンロードしてくる
+```
+git clone https://github.com/yumekiti/door-logger.git
+```
+
+- python3が入っていること、以下無い場合
+```
+bash pac.sh
+```
+
+- raspberry piの12ピンとgrandに刺しておく
+
+- `door-logger/raspberry-pi/`内で以下コマンド
+```
+python3 post.py
+```
+
+# 消したい場合
+
+`door-logger/server/docker`に移動し以下コマンドで削除
+```
+bash delete.sh
 ```

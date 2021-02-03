@@ -32,24 +32,3 @@ php artisan key:generate
 ```
 php artisan migrate
 ```
-
-# 開発で使用したパッケージ
-
-```
-sudo apt install vsftpd
-```
-
-> vsftpdの設定
-
-```
-# /etc/vsftpd.conf以下変更
-write_enable=YES
-```
-
-# 消したい場合
-
-`door-logger/docker`に移動し以下コマンドで削除
-
-```
-bash delete.sh
-```
