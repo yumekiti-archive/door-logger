@@ -21,25 +21,37 @@ git clone https://github.com/yumekiti/door-logger.git
 
 - パッケージを入れる
 ```
-bash pac.sh
+make pac
 ```
 
 - sudo無しdocker
 ```
-bash docker.sh
+make gpas
 ```
 
-- 起動させる
+- 初期起動
 ```
-bash run.sh
+make init
+```
+
+2回目以降の起動
+```
+make up
+```
+
+停止
+```
+make down
 ```
 
 - 仮のデータを入れる
 ```
-bash seed.sh
+make seed
 ```
 
 - nodeのバージョンが合っていない場合
+
+server/dockerディレクトリ
 ```
 bash nvm.sh
 ```
@@ -73,5 +85,5 @@ python3 post.py
 
 `door-logger/server/docker`に移動し以下コマンドで削除
 ```
-bash delete.sh
+make rm
 ```
