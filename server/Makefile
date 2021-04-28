@@ -54,3 +54,11 @@ shDB:
 pac:
 	sudo apt update && sudo apt -y upgrade &&  \
 	sudo apt install docker docker.io docker-compose npm
+
+.PHONY: nvm
+nvm:
+	bash ./docker/nvm.sh
+
+.PHONY: nodeupdate
+nodeupdate:
+	bash ./docker/nodeupdate.sh
