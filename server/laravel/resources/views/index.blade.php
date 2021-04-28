@@ -14,30 +14,35 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 @foreach ($devices as $device)
-                <div class="ml-20 p-6 bg-white border-b border-gray-200" id="device-id-{{ $device->id }}">
-                    <a href="{{ route('doorlog',['deviceId' => $device->id] )}}">
-                    <ul>
-                        <li class="p-1">
-                            デバイス名：{{ $device->device_name }}
-                        </li>
-                        <li class="p-1 door-state">
-                            状態：
-                            @if(isset($device->latest_log->is_open) && $device->latest_log->is_open)
-                                OPEN
-                            @else
-                                CLOSE
-                            @endif
-                        </li>
-                    </ul>
-                    </a>
-                </div>
+                    @if( $user->id === $device->user_id )
+                        <div class="ml-20 p-6 bg-white border-b border-gray-200" id="device-id-{{ $device->id }}">
+                            <a href="{{ route('doorlog',['deviceId' => $device->id] )}}">
+                            <ul>
+                                <li class="p-1">
+                                    デバイス名：{{ $device->device_name }}
+                                </li>
+                                <li class="p-1 door-state">
+                                    状態：
+                                    @if(isset($device->latest_log->is_open) && $device->latest_log->is_open)
+                                        OPEN
+                                    @else
+                                        CLOSE
+                                    @endif
+                                </li>
+                            </ul>
+                            </a>
+                        </div>
+                    @endif
                 @endforeach
             </div>
             <!--@foreach ($devices as $device)
             <br><p>{{ $device }}</p>
             @endforeach
             <br><p>{{ $user }}</p>
-            <br><p>{{ $door }}</p>-->
+            <br><p>{{ $door }}</p>
+            <br><br><br>
+            <p>{{ $user->id }}</p>
+            <p>{{ $device->user_id }}</p>-->
         </div>
     </div>
 </x-app-layout>
