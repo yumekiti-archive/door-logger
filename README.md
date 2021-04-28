@@ -51,12 +51,11 @@ make seed
 
 - nodeのバージョンが合っていない場合
 
-server/dockerディレクトリ
 ```
-bash nvm.sh
+make nvm
 ```
 ```
-bash nodeupdate.sh
+make nodeupdate
 ```
 
 ## raspberry piへの設定
