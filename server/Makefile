@@ -6,18 +6,16 @@ dc := user=$(USER) docker-compose
 
 .PHONY: init
 init:
+	sudo chmod -R 777 ./docker/door-loggerLogs
 	$(dc) -f ./docker/docker-compose.yml up -d --build && \
 	$(dc) -f ./docker/docker-compose.yml exec php composer install && \
 	$(dc) -f ./docker/docker-compose.yml exec php cp .env.example .env && \
 	$(dc) -f ./docker/docker-compose.yml exec php php artisan key:generate && \
-	$(dc) -f ./docker/docker-compose.yml exec php php artisan migrate && \
-	cd ./laravel/ && \
-	npm install && \
-	npm run dev
+	$(dc) -f ./docker/docker-compose.yml exec php php artisan migrate
 
 .PHONY: seed
 seed:
-	$(dc) exec php php artisan db:seed
+	$(dc) -f ./docker/docker-compose.yml exec php php artisan db:seed
 
 .PHONY: gpasswd
 gpasswd:
