@@ -6,7 +6,6 @@ dc := user=$(USER) docker-compose
 
 .PHONY: init
 init:
-	sudo chmod -R 777 ./docker/door-loggerLogs
 	$(dc) -f ./docker/docker-compose.yml up -d --build && \
 	$(dc) -f ./docker/docker-compose.yml exec php composer install && \
 	$(dc) -f ./docker/docker-compose.yml exec php cp .env.example .env && \
