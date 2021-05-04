@@ -29,8 +29,6 @@ services:
     db:
         build: ./mysql
         container_name: "door-logger-db"
-        volumes:
-            - ./door-loggerLogs/mysql:/var/log/mysql/
         ports:
             - 3360:3306
         environment:
