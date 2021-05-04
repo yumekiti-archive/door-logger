@@ -54,3 +54,10 @@ services:
         volumes:
           - ./laravel-echo/:/work:cached
         working_dir: /work
+
+    node:
+        image: node:16
+        container_name: door-logger-node
+        volumes:
+            - ../laravel:/mnt/laravel/
+        tty: true
