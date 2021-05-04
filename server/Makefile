@@ -6,11 +6,13 @@ dc := user=$(USER) docker-compose
 
 .PHONY: init
 init:
+	rm -f ./docker/laravel-echo/laravel-echo-server.lock ; \
 	$(dc) -f ./docker/docker-compose.yml up -d --build && \
-	$(dc) -f ./docker/docker-compose.yml exec php composer install && \
-	$(dc) -f ./docker/docker-compose.yml exec php cp .env.example .env && \
-	$(dc) -f ./docker/docker-compose.yml exec php php artisan key:generate && \
-	$(dc) -f ./docker/docker-compose.yml exec php php artisan migrate
+	sleep 10 && \
+	$(dc) -f ./docker/docker-compose.yml exec php /bin/bash -c "composer install" && \
+	$(dc) -f ./docker/docker-compose.yml exec php /bin/bash -c "cp .env.example .env" && \
+	$(dc) -f ./docker/docker-compose.yml exec php /bin/bash -c "php artisan key:generate" && \
+	$(dc) -f ./docker/docker-compose.yml exec php /bin/bash -c "php artisan migrate"
 
 .PHONY: seed
 seed:
