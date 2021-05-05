@@ -3,14 +3,22 @@ GID := $(shell id -g)
 USER := $(UID):$(GID)
 dc := user=$(USER) docker-compose
 
+.PHONY: test
+test:
+	make init
+	make seed
 
 .PHONY: init
 init:
+	rm -f ./docker/laravel-echo/laravel-echo-server.lock ; \
 	$(dc) -f ./docker/docker-compose.yml up -d --build && \
-	$(dc) -f ./docker/docker-compose.yml exec php composer install && \
-	$(dc) -f ./docker/docker-compose.yml exec php cp .env.example .env && \
-	$(dc) -f ./docker/docker-compose.yml exec php php artisan key:generate && \
-	$(dc) -f ./docker/docker-compose.yml exec php php artisan migrate
+	sleep 10 && \
+	$(dc) -f ./docker/docker-compose.yml exec php /bin/bash -c "composer install" && \
+	$(dc) -f ./docker/docker-compose.yml exec php /bin/bash -c "cp .env.example .env" && \
+	$(dc) -f ./docker/docker-compose.yml exec php /bin/bash -c "php artisan key:generate" && \
+	$(dc) -f ./docker/docker-compose.yml exec php /bin/bash -c "php artisan migrate" && \
+	$(dc) -f ./docker/docker-compose.yml exec node /bin/bash -c "npm install --prefix=/mnt/laravel/" && \
+	$(dc) -f ./docker/docker-compose.yml exec node /bin/bash -c "npm run dev --prefix=/mnt/laravel/"
 
 .PHONY: seed
 seed:
@@ -21,7 +29,6 @@ gpasswd:
 	sudo groupadd docker && \
 	sudo gpasswd -a $USER docker && \
 	sudo reboot
-
 
 .PHONY: up
 up:
