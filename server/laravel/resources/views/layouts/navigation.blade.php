@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
                     <a href="{{ route('index') }}">
-                        <img class="block h-10 w-auto fill-current text-gray-600" src="/images/icon.png">
+                        <img class="h-10 w-auto" src="/images/icon.png">
                     </a>
                 </div>
 
