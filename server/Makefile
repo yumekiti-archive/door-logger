@@ -6,6 +6,7 @@ dc := user=$(USER) docker-compose
 .PHONY: test
 test:
 	make init
+	make npm
 	make seed
 
 .PHONY: init
@@ -17,8 +18,7 @@ init:
 	$(dc) -f ./docker/docker-compose.yml exec php /bin/bash -c "cp .env.example .env" && \
 	$(dc) -f ./docker/docker-compose.yml exec php /bin/bash -c "php artisan key:generate" && \
 	$(dc) -f ./docker/docker-compose.yml exec php /bin/bash -c "php artisan migrate" && \
-	$(dc) -f ./docker/docker-compose.yml exec node /bin/bash -c "npm install --prefix=/mnt/laravel/" && \
-	$(dc) -f ./docker/docker-compose.yml exec node /bin/bash -c "npm run dev --prefix=/mnt/laravel/"
+	make npm
 
 .PHONY: seed
 seed:
@@ -66,3 +66,8 @@ nvm:
 .PHONY: nodeupdate
 nodeupdate:
 	bash ./docker/nodeupdate.sh
+
+.PHONY: npm
+npm:
+	$(dc) -f ./docker/docker-compose.yml exec node /bin/bash -c "npm install --prefix=/mnt/laravel/" && \
+	$(dc) -f ./docker/docker-compose.yml exec node /bin/bash -c "npm run dev --prefix=/mnt/laravel/"
