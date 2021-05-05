@@ -14,7 +14,7 @@ print("IPとポートを指定")
 ip = input()
 
 # 以下URLが等しくない時変更 URL設定
-url = "http://" + ip + "/api/device/door"
+url = "https://" + ip + "/api/device/door"
 
 # 変更内容ここまで
 
@@ -50,7 +50,7 @@ while True:
             door_json = json.dumps(params)
 
             # サーバーへPOST
-            res = requests.post(url, door_json, headers=headers)
+            res = requests.post(url, door_json, headers=headers, verify = False)
 
         sw_lock = door_sw
 
