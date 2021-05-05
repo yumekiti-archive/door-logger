@@ -1,6 +1,10 @@
-cd ./docker/nginx/ssl/ && \
-openssl req -x509 -nodes -new -keyout server.key -out server.crt -days 365 && \
-cd ../../ && \
-sed -i -e "s/image: nginx/build: .\/nginx\/ssl\//g" docker-compose.yml ; \
-sed -i -e "12d" docker-compose.yml ; \
-cd ../
+if (cat ./docker/docker-compose.yml | grep nginx-default.conf > /dev/null 2>&1); then
+    cd ./docker/nginx/ssl/ && \
+    openssl req -x509 -nodes -new -keyout server.key -out server.crt -days 365 && \
+    cd ../../ && \
+    sed -i -e "s/image: nginx/build: .\/nginx\/ssl\//g" docker-compose.yml ; \
+    sed -i -e "12d" docker-compose.yml ; \
+    cd ../
+else
+    echo "ssl ok"
+fi
