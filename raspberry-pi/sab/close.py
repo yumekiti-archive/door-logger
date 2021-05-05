@@ -13,7 +13,7 @@ print("IPとポートを指定")
 ip = "localhost:8081"
 
 # 以下URLが等しくない時変更 URL設定
-url = "http://" + ip + "/api/device/door"
+url = "https://" + ip + "/api/device/door"
 
 # 変更内容ここまで
 
@@ -33,7 +33,7 @@ params = { "is_open": door_sw }
 door_json = json.dumps(params)
 
 # サーバーへPOST
-res = requests.post(url, door_json, headers=headers)
+res = requests.post(url, door_json, headers=headers, verify = False)
 
 # 終わり確認
 print("end")

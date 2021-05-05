@@ -8,10 +8,10 @@ import sys
 
 # トークン設定
 print("トークンを設定")
-token = input()
+token = "4c716d4cf211c7b7d2f3233c941771ad0507ea5bacf93b492766aa41ae9f720d"
 
 print("IPとポートを指定")
-ip = input()
+ip = "localhost:8081"
 
 # 以下URLが等しくない時変更 URL設定
 url = "https://" + ip + "/api/device/door"
