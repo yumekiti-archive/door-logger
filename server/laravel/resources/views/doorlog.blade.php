@@ -5,10 +5,16 @@
         </h2>
     </x-slot>
 
+<style type="text/css">
+    .border-size{
+        width: 1050px;
+    }
+</style>
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200 ml-20" id="device-id-{{ $devices->id }}">
+                <div class="p-6 bg-white border-b border-gray-200 ml-20 border-size" id="device-id-{{ $devices->id }}">
                     <ul>
                         <li class="p-1">
                             デバイス名：{{$devices->device_name}}
@@ -30,12 +36,12 @@
                     </ul>
                 </div>
                 @foreach ($devices->logs->reverse() as $deviceLog)
-                <div class="p-6 bg-white border-b border-gray-200 ml-20">
+                <div class="p-6 bg-white border-b border-gray-200 ml-20 border-size">
                     <ul>
-                        <li>
+                        <li class="door-log">
                             {{ $deviceLog->created_at->format('Y年m月d日：G時i分s秒') }}
                         </li>
-                        <li>
+                        <li class="">
                             @if($deviceLog->is_open)
                                 OPEN
                             @else
