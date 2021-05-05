@@ -54,7 +54,7 @@
                     @endforeach
                 </div>
             </div>
-            <br><p>{{ $devices }}</p>
+            <!--<br><p>{{ $devices }}</p>-->
         </div>
     </div>
 </x-app-layout>
