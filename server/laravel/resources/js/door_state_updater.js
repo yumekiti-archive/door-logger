@@ -37,7 +37,7 @@ const updateState = (e) => {
         element.innerText = doorLog.is_open ? "状態： OPEN" : "状態： CLOSE";
 
         Notification.requestPermission();
-        const notification = new Notification(doorLog.is_open ? "ドアID" + doorLog.device_id + "のドアが開きました" : "ドアID" + doorLog.device_id + "のドアが閉じました");
+        const notification = new Notification(doorLog.is_open ? "デバイスID" + doorLog.device_id + "のドアが開きました" : "デバイスID" + doorLog.device_id + "のドアが閉じました");
     }
 
 }
