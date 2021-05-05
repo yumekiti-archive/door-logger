@@ -71,3 +71,12 @@ nodeupdate:
 npm:
 	$(dc) -f ./docker/docker-compose.yml exec node /bin/bash -c "npm install --prefix=/mnt/laravel/" && \
 	$(dc) -f ./docker/docker-compose.yml exec node /bin/bash -c "npm run dev --prefix=/mnt/laravel/"
+
+.PHONY: ssl
+ssl:
+	cd server/docker/nginx/ssl/ && \
+	openssl req -x509 -nodes -new -keyout server.key -out server.crt -days 365 && \
+	cd ../ && \
+	sed -e "s/image: nginx/build: .\//g" docker-compose.yml > docker-compose.yml && \
+	sed -e "12d" docker-compose.yml > docker-compose.yml && \
+	cd ../

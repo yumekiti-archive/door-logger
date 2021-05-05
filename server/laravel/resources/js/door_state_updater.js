@@ -12,12 +12,9 @@ const updateState = (e) => {
     if(elements.length){
         let element = elements[0];
         element.innerText = doorLog.is_open ? "状態：OPEN" : "状態：CLOSE";
-    }
 
-    let elements1 = deviceElement.getElementsByClassName("door-log");
-    if(elements1.length){
-        let element = elements1[0];
-        element.innerText = doorLog.created_at;
+        Notification.requestPermission();
+        const notification = new Notification(doorLog.device_id + "のドアが" + doorLog.is_open ? "開きました！" : "閉まりました！");
     }
 
 }
