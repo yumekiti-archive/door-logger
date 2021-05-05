@@ -9,7 +9,6 @@ services:
             - "8081:80"
         volumes:
             - ../laravel:/var/www
-            - ./door-loggerLogs/nginx:/var/log/nginx/
         depends_on:
             - php
   

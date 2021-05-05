@@ -19,6 +19,9 @@
                             <a href="{{ route('doorlog',['deviceId' => $device->id] )}}">
                             <ul>
                                 <li class="p-1">
+                                    デバイスID：{{ $device->id }}
+                                </li>
+                                <li class="p-1">
                                     デバイス名：{{ $device->device_name }}
                                 </li>
                                 <li class="p-1 door-state">

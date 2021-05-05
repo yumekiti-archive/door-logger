@@ -17,6 +17,9 @@
                 <div class="p-6 bg-white border-b border-gray-200 ml-20 border-size" id="device-id-{{ $devices->id }}">
                     <ul>
                         <li class="p-1">
+                            デバイスID：{{ $devices->id }}
+                        </li>
+                        <li class="p-1">
                             デバイス名：{{$devices->device_name}}
                         </li>
                         <li class="p-1 door-state">
