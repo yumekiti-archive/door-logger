@@ -2,6 +2,10 @@
 up:
 	python3 post.py
 
+.PHONY: test
+test:
+	python3 test.py
+
 .PHONY: pac
 pac:
 	bash pac.sh
