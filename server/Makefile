@@ -5,7 +5,6 @@ dc := user=$(USER) docker-compose
 
 .PHONY: test
 test:
-	make ssl
 	make init
 	make npm
 	make seed
