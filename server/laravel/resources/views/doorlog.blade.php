@@ -35,24 +35,26 @@
                         </li>
                     </ul>
                 </div>
-                @foreach ($devices->logs->reverse() as $deviceLog)
-                <div class="p-6 bg-white border-b border-gray-200 ml-20 border-size">
-                    <ul>
-                        <li class="door-log">
-                            {{ $deviceLog->created_at->format('Y年m月d日：G時i分s秒') }}
-                        </li>
-                        <li class="">
-                            @if($deviceLog->is_open)
-                                OPEN
-                            @else
-                                CLOSE
-                            @endif
-                        </li>
-                    </ul>
+                <div id="door-logs">
+                    @foreach ($devices->logs->reverse() as $deviceLog)
+                    <div class="p-6 bg-white border-b border-gray-200 ml-20 border-size">
+                        <ul>
+                            <li>
+                                {{ $deviceLog->created_at->format('Y年m月d日：G時i分s秒') }}
+                            </li>
+                            <li>
+                                @if($deviceLog->is_open)
+                                    OPEN
+                                @else
+                                    CLOSE
+                                @endif
+                            </li>
+                        </ul>
+                    </div>
+                    @endforeach
                 </div>
-                @endforeach
             </div>
-            <!--<br><p>{{ $devices }}</p>-->
+            <br><p>{{ $devices }}</p>
         </div>
     </div>
 </x-app-layout>
