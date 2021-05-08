@@ -62,11 +62,11 @@ pac:
 
 .PHONY: nvm
 nvm:
-	bash ./docker/nvm.sh
+	bash ./docker/laravel-echo/nvm.sh
 
 .PHONY: nodeupdate
 nodeupdate:
-	bash ./docker/nodeupdate.sh
+	bash ./docker/laravel-echo/nodeupdate.sh
 
 .PHONY: npm
 npm:
@@ -75,4 +75,4 @@ npm:
 
 .PHONY: ssl
 ssl:
-	bash ./docker/ssl.sh
+	bash ./docker/nginx/ssl.sh
