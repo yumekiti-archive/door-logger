@@ -14,7 +14,7 @@ test:
 init:
 	rm -f ./docker/laravel-echo/laravel-echo-server.lock ; \
 	$(dc) -f ./docker/docker-compose.yml up -d --build && \
-	sleep 10 && \
+	bash ./docker/php/php.sh
 	$(dc) -f ./docker/docker-compose.yml exec php /bin/bash -c "composer install" && \
 	$(dc) -f ./docker/docker-compose.yml exec php /bin/bash -c "cp .env.example .env" && \
 	$(dc) -f ./docker/docker-compose.yml exec php /bin/bash -c "php artisan key:generate" && \
