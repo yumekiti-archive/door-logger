@@ -8,12 +8,12 @@ test:
 
 .PHONY: pac
 pac:
-	bash pac.sh
+	sudo apt install python3
 
 .PHONY: open
 open:
-	python3 sab/open.py
+	python3 test-open-close/open.py
 
 .PHONY: close
 close:
-	python3 sab/close.py
+	python3 test-open-close/close.py
